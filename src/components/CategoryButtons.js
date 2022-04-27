@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 function CategoryButtons() {
   return (
@@ -8,4 +9,9 @@ function CategoryButtons() {
   );
 }
 
-export default CategoryButtons;
+const mapStateToProps = (state) => ({
+  meals: state.categoryButtonsReducer.meals,
+  drinks: state.categoryButtonsReducer.drinks,
+});
+
+export default connect(mapStateToProps)(CategoryButtons);
