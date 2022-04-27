@@ -5,12 +5,13 @@ const SEARCH_TYPES = {
   name: 'search.php?s=',
   ingredient: 'filter.php?i=',
   firstletter: 'search.php?f=',
+  categoryList: 'list.php?c=list',
 };
 
 /**
  * @param {Object} options - Opções da pesquisa.
  * @param {"drinks" | "meals"} options.api - Qual API será requisitada
- * @param {"name" | "ingredient" | "firstletter"} options.searchType - Tipo de pesquisa que será efetuada
+ * @param {"name" | "ingredient" | "firstletter" | "categoryList"} options.searchType - Tipo de pesquisa que será efetuada
  * @param {string | undefined} options.query - Valor da pesquisa
  */
 const searchApi = async ({ api, searchType, query, token }) => {
