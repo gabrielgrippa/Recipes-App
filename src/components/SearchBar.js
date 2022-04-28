@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Card, Container, Form } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import searchAction from '../redux/actions/showcaseActions';
-import { FIRST_LETTER_SEARCH, INGREDIENT_SEARCH, NAME_SEARCH } from '../services/API';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchAction } from '../redux/actions/showcaseActions';
+import { FIRST_LETTER_SEARCH, INGREDIENT_SEARCH, NAME_SEARCH } from '../redux/actions';
 
 function SearchBar() {
   const [form, updateForm] = useState({ input: '', searchType: 'name' });
   const dispatch = useDispatch();
+  const searchBar = useSelector((state) => state.showcaseReducer.searchBar);
 
   const isFormValid = () => {
     const { input, searchType } = form;
@@ -53,6 +54,7 @@ function SearchBar() {
     }
   };
 
+  if (!searchBar) return null;
   return (
     <Card className="p-2 m-1">
       <Form className="d-flex flex-column gap-2">
