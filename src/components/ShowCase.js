@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-function ShowCase({ showCase }) {
+function ShowCase() {
+  const currentRecipes = useSelector((state) => state.showcaseReducer);
   const lengthLimit = () => {
     // const QT_MAX = 12;
-    console.log(showCase);
+    console.log(currentRecipes);
   };
   lengthLimit();
   return (
@@ -15,12 +15,4 @@ function ShowCase({ showCase }) {
   );
 }
 
-ShowCase.propTypes = {
-  showCase: PropTypes.array,
-}.isRequired;
-
-const mapStateToProps = (state) => ({
-  showCase: state.showcaseReducer,
-});
-
-export default connect(mapStateToProps)(ShowCase);
+export default ShowCase;
