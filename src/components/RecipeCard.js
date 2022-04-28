@@ -1,9 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
 
-function RecipeCard() {
+function RecipeCard({ keyImg, keyName }) {
   return (
-    <p>card</p>
+    <Card>
+      <img src={ keyImg } alt={ `${keyName}-img` } />
+      { keyName }
+    </Card>
   );
 }
+
+RecipeCard.propTypes = {
+  keyImg: PropTypes.string,
+  keyName: PropTypes.string,
+}.isRequired;
 
 export default RecipeCard;
