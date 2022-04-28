@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CategoryButtons from '../components/CategoryButtons';
+import CategoriesButtons from '../components/CategoriesButtons';
 import Header from '../components/Header';
+import ShowCase from '../components/ShowCase';
 
 function Foods({ location: { pathname } }) {
   return (
     <div>
       <Header />
-      <CategoryButtons selectedItem={ pathname } />
+      <CategoriesButtons selectedItem={ pathname } />
+      <ShowCase />
     </div>
   );
 }
