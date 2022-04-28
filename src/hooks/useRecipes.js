@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { NAME_SEARCH } from '../redux/actions';
 import { searchAction } from '../redux/actions/showcaseActions';
+import fetchCategories from '../redux/actions/categoriesActions';
 
 const useRecipes = (pathname, dispatch) => {
   useEffect(() => {
@@ -13,6 +14,7 @@ const useRecipes = (pathname, dispatch) => {
       searchType,
       query,
     }));
+    dispatch(fetchCategories());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
