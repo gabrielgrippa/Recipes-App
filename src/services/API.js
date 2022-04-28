@@ -28,10 +28,13 @@ const searchApi = async ({ api, searchType, query, token }) => {
   const QUERY = query ? query.trim() : '';
 
   const FULL_URL = `${BASE_URL}${token}/${SEARCH_TYPE}${QUERY}`;
-
-  const request = await fetch(FULL_URL);
-  const data = await request.json();
-  return data[api];
+  try {
+    const request = await fetch(FULL_URL);
+    const data = await request.json();
+    return data[api];
+  } catch (error) {
+    console.log(`Error: ${error}`);
+  }
 };
 
 export default searchApi;
