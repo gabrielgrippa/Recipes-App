@@ -1,4 +1,7 @@
-const initialState = [];
+// Temporário
+import mealsData from '../../helpers/mockMeals';
+
+const initialState = [...mealsData];
 
 const showcaseReducer = (state = initialState, action) => {
   switch (action.type) {
