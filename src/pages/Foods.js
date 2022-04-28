@@ -1,12 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import CategoriesButtons from '../components/CategoriesButtons';
 import Header from '../components/Header';
 import ShowCase from '../components/ShowCase';
 import SearchBar from '../components/SearchBar';
+import useRecipes from '../hooks/useRecipes';
 
 function Foods() {
-  const { location: { pathname } } = useHistory();
+  const pathname = window.location.pathname.split('/')[1];
+  const dispatch = useDispatch();
+  useRecipes(pathname, dispatch);
   return (
     <div>
       <Header title="Foods" />
