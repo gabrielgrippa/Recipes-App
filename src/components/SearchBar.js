@@ -7,9 +7,22 @@ function SearchBar() {
   const [form, updateForm] = useState({ input: '', searchType: 'name' });
   const dispatch = useDispatch();
 
+  const isFormValid = () => {
+    const { input, searchType } = form;
+
+    if (searchType === 'firstletter' && input.length > 1) {
+      global.alert('Your search must have only 1 (one) character');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSearchClick = () => {
     const CURRENT_API = window.location.pathname.split('/')[1];
     const { input, searchType } = form;
+
+    if (!isFormValid()) return;
 
     dispatch(searchAction({
       api: CURRENT_API,
@@ -19,30 +32,10 @@ function SearchBar() {
   };
 
   const handleInput = ({ target }) => {
-    const { input, searchType } = form;
-
-    // Caso usuário tente adicionar mais de 2 caracteres com First Letter selecionado
-    if (
-      target.name === 'input'
-      && target.value.length > 1
-      && searchType === 'firstletter'
-    ) {
-      return global.alert('Your search must have only 1 (one) character');
-    }
-
-    // Caso usuário tente mudar para First Letter com mais de 2 caracteres digitados.
-    if (
-      target.name === 'searchType'
-      && target.value === 'firstletter'
-      && input.length > 1
-    ) {
-      return global.alert('Your search must have only 1 (one) character');
-    }
-
-    updateForm({
-      ...form,
+    updateForm((prevForm) => ({
+      ...prevForm,
       [target.name]: target.value,
-    });
+    }));
   };
 
   const getPlaceholder = () => {
