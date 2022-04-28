@@ -1,4 +1,4 @@
-import { DRINK_TYPE, TOGGLE_SEARCH_BAR } from '.';
+import { DRINK_TYPE, TOGGLE_SEARCH_BAR, SET_SHOWCASE_ITEMS } from '.';
 import searchApi from '../../services/API';
 
 const searchAction = (options) => async (dispatch, getState) => {
@@ -9,9 +9,9 @@ const searchAction = (options) => async (dispatch, getState) => {
     token: options.api === DRINK_TYPE ? cocktailsToken : mealsToken,
   });
 
-  const LIMIT_INDEX = 11;
+  const LIMIT_INDEX = 12;
   dispatch({
-    type: 'SET_SHOWCASE_ITEMS',
+    type: SET_SHOWCASE_ITEMS,
     payload: request ? request.slice(0, LIMIT_INDEX) : [] });
 };
 
