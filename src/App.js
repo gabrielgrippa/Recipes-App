@@ -9,8 +9,8 @@ import Drinks from './pages/Drinks';
 function App() {
   return (
     <Switch>
-      <Route exact path="/meals/:id" component={ Foods } />
-      <Route exact path="/meals" component={ Foods } />
+      <Route exact path="/foods/:id" component={ Foods } />
+      <Route exact path="/foods" component={ Foods } />
       <Route exact path="/drinks/:id" component={ Drinks } />
       <Route exact path="/drinks" component={ Drinks } />
       <Route exact path="/" component={ Login } />

@@ -11,7 +11,7 @@ function Login() {
 
   const handleLoginButton = () => {
     dispatch(loginAction(form.email));
-    history.push('/meals');
+    history.push('/foods');
   };
 
   const handleInput = ({ target }) => {

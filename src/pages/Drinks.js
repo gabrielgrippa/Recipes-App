@@ -11,7 +11,6 @@ function Drinks() {
   const pathname = window.location.pathname.split('/')[1];
   const dispatch = useDispatch();
   useRecipes(pathname, dispatch);
-
   return (
     <div>
       <Header title="Drinks" />

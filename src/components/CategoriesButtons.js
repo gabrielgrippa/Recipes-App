@@ -30,7 +30,7 @@ function CategoryButtons({ selectedItem }) {
     </div>
   );
 
-  const currentPage = selectedItem === 'meals' ? meals : drinks;
+  const currentPage = selectedItem === 'foods' ? meals : drinks;
 
   return renderButtons(currentPage);
 }

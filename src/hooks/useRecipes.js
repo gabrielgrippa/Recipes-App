@@ -3,14 +3,13 @@ import { NAME_SEARCH } from '../redux/actions';
 import { searchAction } from '../redux/actions/showcaseActions';
 import fetchCategories from '../redux/actions/categoriesActions';
 
-const useRecipes = (pathname, dispatch) => {
+const useRecipes = (CURRENT_API, dispatch) => {
+  const api = CURRENT_API === 'foods' ? 'meals' : 'drinks';
   useEffect(() => {
-    console.log(pathname);
-
     const searchType = NAME_SEARCH;
     const query = '';
     dispatch(searchAction({
-      api: pathname,
+      api,
       searchType,
       query,
     }));
