@@ -1,23 +1,12 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route } from 'react-router-dom';
-
-import { connect } from 'react-redux';
-
-import fetchCategories from './redux/actions/getCategories';
+import Login from './pages/Login';
 
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
-import Login from './pages/Login';
 
-function App({ getCategories }) {
-  // Temporario até a existencia do login, ação deve acontecer no login.
-  useEffect(() => {
-    getCategories();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+function App() {
   return (
     <Switch>
       <Route exact path="/foods/:id" component={ Foods } />
@@ -29,12 +18,4 @@ function App({ getCategories }) {
   );
 }
 
-App.propTypes = {
-  getCategories: PropTypes.func,
-}.isRequired;
-
-const mapDispatchToProps = (dispatch) => ({
-  getCategories: () => dispatch(fetchCategories()),
-});
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

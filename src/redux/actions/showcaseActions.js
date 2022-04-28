@@ -1,9 +1,20 @@
-import { searchApi } from '../../services/API';
+import { DRINK_TYPE, TOGGLE_SEARCH_BAR } from '.';
+import searchApi from '../../services/API';
 
-const searchAction = (options) => async (dispatch) => {
-  // TODO: Pegar token do usuário do redux com o getState.
-  const request = await searchApi({ ...options, token: '1' });
-  dispatch({ type: 'SET_SHOWCASE_ITEMS', payload: request });
+const searchAction = (options) => async (dispatch, getState) => {
+  const { profileReducer: { cocktailsToken, mealsToken } } = getState();
+
+  const request = await searchApi({
+    ...options,
+    token: options.api === DRINK_TYPE ? cocktailsToken : mealsToken,
+  });
+
+  const LIMIT_INDEX = 11;
+  dispatch({
+    type: 'SET_SHOWCASE_ITEMS',
+    payload: request ? request.slice(0, LIMIT_INDEX) : [] });
 };
 
-export default searchAction;
+const toggleSearchBar = { type: TOGGLE_SEARCH_BAR };
+
+export { searchAction, toggleSearchBar };

@@ -1,7 +1,7 @@
-import { GET_DRINKS, GET_MEALS } from '.';
-import { searchApi } from '../../services/API';
+import { CATEGORY_LIST, DRINK_TYPE, GET_DRINKS, GET_MEALS, MEAL_TYPE } from '.';
+import searchApi from '../../services/API';
 
-const infoDefault = { searchType: 'categoryList', query: '', token: 1 };
+const infoDefault = { searchType: CATEGORY_LIST, query: '', token: 1 };
 
 const QT_MAX = 5;
 
@@ -15,8 +15,8 @@ const filterCategories = (data) => data
 
 const fetchCategories = () => async (dispatch) => {
   try {
-    const drinksResponse = await searchApi({ api: 'drinks', ...infoDefault });
-    const mealsResponse = await searchApi({ api: 'meals', ...infoDefault });
+    const drinksResponse = await searchApi({ api: DRINK_TYPE, ...infoDefault });
+    const mealsResponse = await searchApi({ api: MEAL_TYPE, ...infoDefault });
 
     dispatch(getDrinks(filterCategories(drinksResponse)));
     dispatch(getMeals(filterCategories(mealsResponse)));

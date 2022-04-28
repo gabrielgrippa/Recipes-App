@@ -1,15 +1,20 @@
 import React from 'react';
 import { Button, Container, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import ProfileIcon from '../images/profileIcon.svg';
 import SearchIcon from '../images/searchIcon.svg';
+import { toggleSearchBar } from '../redux/actions/showcaseActions';
 
 function Header({
   enableSearch,
   title,
-  onSearchClick,
 }) {
+  const dispatch = useDispatch();
+
+  const toggleSearch = () => dispatch(toggleSearchBar);
+
   return (
     <Navbar bg="light" variant="light" className="shadow-sm">
       <Container>
@@ -35,7 +40,7 @@ function Header({
           <Button
             variant="text"
             className="p-0"
-            onClick={ onSearchClick }
+            onClick={ toggleSearch }
           >
             <img
               style={ { width: '20px' } }
@@ -53,12 +58,10 @@ function Header({
 Header.propTypes = {
   enableSearch: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  onSearchClick: PropTypes.func,
 };
 
 Header.defaultProps = {
   enableSearch: true,
-  onSearchClick: () => {},
 };
 
 export default Header;

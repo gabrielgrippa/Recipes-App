@@ -1,11 +1,19 @@
+import {
+  CATEGORY_LIST,
+  DRINK_TYPE,
+  FIRST_LETTER_SEARCH,
+  INGREDIENT_SEARCH,
+  NAME_SEARCH,
+} from '../redux/actions';
+
 const BASE_MEALS = 'https://www.themealdb.com/api/json/v1/';
 const BASE_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/';
 
-const SEARCH_TYPES = {
-  name: 'search.php?s=',
-  ingredient: 'filter.php?i=',
-  firstletter: 'search.php?f=',
-  categoryList: 'list.php?c=list',
+const mapTypeToPath = {
+  [NAME_SEARCH]: 'search.php?s=',
+  [INGREDIENT_SEARCH]: 'filter.php?i=',
+  [FIRST_LETTER_SEARCH]: 'search.php?f=',
+  [CATEGORY_LIST]: 'list.php?c=list',
 };
 
 /**
@@ -15,8 +23,8 @@ const SEARCH_TYPES = {
  * @param {string | undefined} options.query - Valor da pesquisa
  */
 const searchApi = async ({ api, searchType, query, token }) => {
-  const BASE_URL = api === 'drinks' ? BASE_DRINKS : BASE_MEALS;
-  const SEARCH_TYPE = SEARCH_TYPES[searchType];
+  const BASE_URL = api === DRINK_TYPE ? BASE_DRINKS : BASE_MEALS;
+  const SEARCH_TYPE = mapTypeToPath[searchType];
   const QUERY = query ? query.trim() : '';
 
   const FULL_URL = `${BASE_URL}${token}/${SEARCH_TYPE}${QUERY}`;
@@ -26,6 +34,4 @@ const searchApi = async ({ api, searchType, query, token }) => {
   return data[api];
 };
 
-const removeThis = () => {};
-
-export { searchApi, removeThis };
+export default searchApi;
