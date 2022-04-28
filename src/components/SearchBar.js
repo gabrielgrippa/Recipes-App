@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Card, Container, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import searchAction from '../redux/actions/showcaseActions';
+import { FIRST_LETTER_SEARCH, INGREDIENT_SEARCH, NAME_SEARCH } from '../services/API';
 
 function SearchBar() {
   const [form, updateForm] = useState({ input: '', searchType: 'name' });
@@ -10,7 +11,7 @@ function SearchBar() {
   const isFormValid = () => {
     const { input, searchType } = form;
 
-    if (searchType === 'firstletter' && input.length > 1) {
+    if (searchType === FIRST_LETTER_SEARCH && input.length > 1) {
       global.alert('Your search must have only 1 (one) character');
       return false;
     }
@@ -41,11 +42,11 @@ function SearchBar() {
   const getPlaceholder = () => {
     const { searchType } = form;
     switch (searchType) {
-    case 'name':
+    case NAME_SEARCH:
       return 'Search by name...';
-    case 'ingredient':
+    case INGREDIENT_SEARCH:
       return 'Search by ingredient...';
-    case 'firstletter':
+    case FIRST_LETTER_SEARCH:
       return 'Search by first letter...';
     default:
       return 'I\'m looking for...';
@@ -85,11 +86,11 @@ function SearchBar() {
             data-testid="ingredient-search-radio"
           />
           <Form.Check
-            checked={ form.searchType === 'firstletter' }
+            checked={ form.searchType === FIRST_LETTER_SEARCH }
             onChange={ handleInput }
             type="radio"
             name="searchType"
-            value="firstletter"
+            value={ FIRST_LETTER_SEARCH }
             id="firstletter-radio"
             label="First Letter"
             data-testid="first-letter-search-radio"
