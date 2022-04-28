@@ -1,17 +1,20 @@
 import React from 'react';
 import { createMemoryHistory } from 'history';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
+import thunk from 'redux-thunk';
 import { render } from '@testing-library/react';
 import rootReducer from '../redux/reducers';
+
+const middlewares = applyMiddleware(thunk);
 
 // TODO: Testar esta função com o Redux. Funcionando apenas com o Router até o momento.
 const renderWithReduxAndRouter = (
   component,
   { initialState,
     initialRoute = '/',
-    store = createStore(rootReducer, initialState || undefined),
+    store = createStore(rootReducer, initialState || undefined, middlewares),
   } = {},
 ) => {
   const history = createMemoryHistory({
