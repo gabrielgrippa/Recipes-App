@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import { useHistory } from 'react-router-dom';
 import CategoriesButtons from '../components/CategoriesButtons';
@@ -21,9 +20,5 @@ function Drinks() {
     </div>
   );
 }
-
-Drinks.propTypes = {
-  pathname: PropTypes.string,
-}.isRequired;
 
 export default Drinks;

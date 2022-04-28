@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import CategoriesButtons from '../components/CategoriesButtons';
 import Header from '../components/Header';
@@ -17,9 +16,5 @@ function Foods() {
     </div>
   );
 }
-
-Foods.propTypes = {
-  pathname: PropTypes.string,
-}.isRequired;
 
 export default Foods;
