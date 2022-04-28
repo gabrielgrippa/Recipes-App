@@ -40,47 +40,36 @@ describe('Search bar rendering', () => {
   });
 });
 
-describe('Search bar shows alert on invalid First Letter input', () => {
-  test('User tries to type 2 characters on input with First Letter selected', () => {
+describe('Search bar functionality', () => {
+  test('Alert is shown if a first letter query has more than 1 character', () => {
     renderWithReduxAndRouter(<SearchBar />);
     global.alert = jest.fn();
 
     const input = getSearchInput();
     const firstLetterRadio = getLetterRadio();
+    const button = getSubmitButton();
 
     userEvent.click(firstLetterRadio);
     userEvent.type(input, 'ab');
+    userEvent.click(button);
 
     expect(global.alert).toBeCalledWith('Your search must have only 1 (one) character');
   });
 
-  test('User tries to select First Letter with more than 1 letter in input', () => {
-    renderWithReduxAndRouter(<SearchBar />);
-    global.alert = jest.fn();
+  test('The search bar dispatches an action on submit click', () => {
+    const { store } = renderWithReduxAndRouter(<SearchBar />, {
+      initialRoute: '/drinks',
+    });
+
+    // https://stackoverflow.com/a/64425629
+    const dispatchSpy = jest.spyOn(store, 'dispatch');
 
     const input = getSearchInput();
-    const firstLetterRadio = getLetterRadio();
+    const button = getSubmitButton();
 
-    userEvent.type(input, 'ab');
-    userEvent.click(firstLetterRadio);
+    userEvent.type(input, 'Vodka');
+    userEvent.click(button);
 
-    expect(global.alert).toBeCalledWith('Your search must have only 1 (one) character');
+    expect(dispatchSpy).toBeCalled();
   });
-});
-
-test('The search bar dispatches an action on submit click', () => {
-  const { store } = renderWithReduxAndRouter(<SearchBar />, {
-    initialRoute: '/drinks',
-  });
-
-  // https://stackoverflow.com/a/64425629
-  const dispatchSpy = jest.spyOn(store, 'dispatch');
-
-  const input = getSearchInput();
-  const button = getSubmitButton();
-
-  userEvent.type(input, 'Vodka');
-  userEvent.click(button);
-
-  expect(dispatchSpy).toBeCalled();
 });
