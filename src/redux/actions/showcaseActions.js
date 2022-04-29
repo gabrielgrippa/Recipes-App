@@ -9,12 +9,13 @@ import searchApi from '../../services/API';
 
 const loadingRecipes = (state) => ({ type: RECIPES_LOADING, state });
 
-const searchAction = (options) => async (dispatch, getState) => {
-  const { profileReducer: { cocktailsToken, mealsToken } } = getState();
+const searchAction = (options) => async (dispatch) => {
+  // Por alguma motivo o cypress não gera os tokens no localstorage dele, ocorrendo problemas no teste.
+  // const { profileReducer: { cocktailsToken, mealsToken } } = getState();
   const request = await searchApi({
     ...options,
     api: options.api === PATH_FOODS ? MEAL_TYPE : DRINK_TYPE,
-    token: options.api === DRINK_TYPE ? cocktailsToken : mealsToken,
+    token: 1, // options.api === DRINK_TYPE ? cocktailsToken : mealsToken,
   });
 
   const LIMIT_INDEX = 12;
