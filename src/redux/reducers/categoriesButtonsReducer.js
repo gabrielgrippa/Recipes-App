@@ -3,9 +3,10 @@ import { GET_DRINKS, GET_MEALS } from '../actions';
 const initialState = {
   drinks: [],
   meals: [],
+  categoryFilter: 'all',
 };
 
-const categoryButtonsReducer = (state = initialState, action) => {
+const categoriesButtonsReducer = (state = initialState, action) => {
   switch (action.type) {
   case GET_DRINKS:
     return {
@@ -22,4 +23,4 @@ const categoryButtonsReducer = (state = initialState, action) => {
   }
 };
 
-export default categoryButtonsReducer;
+export default categoriesButtonsReducer;

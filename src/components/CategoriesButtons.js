@@ -1,20 +1,35 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CATEGORY_SEARCH } from '../redux/actions';
+import { searchAction } from '../redux/actions/showcaseActions';
 
 function CategoryButtons({ selectedItem }) {
-  const meals = useSelector((state) => state.categoryButtonsReducer.meals);
-  const drinks = useSelector((state) => state.categoryButtonsReducer.drinks);
+  const meals = useSelector((state) => state.categoriesButtonsReducer.meals);
+  const drinks = useSelector((state) => state.categoriesButtonsReducer.drinks);
+  const categoryFilter = useSelector(
+    (state) => state.categoriesButtonsReducer.categoryFilter,
+  );
+  const dispatch = useDispatch();
+  console.log(categoryFilter);
 
-  const categoryFilter = (category) => {
-    console.log(category);
+  // Atenção: Caso a categoria retorne apenas um resultado, NÃO deve ser feito o redirecionamento para a página de detalhes.
+
+  const filteringByCategory = (category) => {
+    const pathname = window.location.pathname.split('/')[1];
+
+    dispatch(searchAction({
+      api: pathname,
+      searchType: CATEGORY_SEARCH,
+      query: category,
+    }));
   };
 
   const renderButtons = (categories) => (
     <div>
       <Button
         data-testid="All-category-filter"
-        onClick={ () => categoryFilter('all') }
+        onClick={ () => filteringByCategory('all') }
       >
         All
       </Button>
@@ -22,7 +37,7 @@ function CategoryButtons({ selectedItem }) {
         <Button
           key={ category }
           data-testid={ `${category}-category-filter` }
-          onClick={ () => categoryFilter(category) }
+          onClick={ () => filteringByCategory(category) }
         >
           {category}
         </Button>

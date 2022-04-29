@@ -8,6 +8,7 @@ export const MEAL_TYPE = 'meals';
 
 // search types
 export const INGREDIENT_SEARCH = 'ingredients';
+export const CATEGORY_SEARCH = 'category';
 export const NAME_SEARCH = 'name';
 export const FIRST_LETTER_SEARCH = 'firstletter';
 export const CATEGORY_LIST = 'categoryList';

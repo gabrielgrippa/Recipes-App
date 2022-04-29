@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import showcaseReducer from './showcaseReducer';
-import categoryButtonsReducer from './categoryButtonsReducer';
+import categoriesButtonsReducer from './categoriesButtonsReducer';
 import profileReducer from './profileReducer';
 
 const rootReducer = combineReducers({
   showcaseReducer,
-  categoryButtonsReducer,
+  categoriesButtonsReducer,
   profileReducer,
 });
 
