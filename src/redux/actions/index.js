@@ -2,6 +2,7 @@
 export const GET_MEALS = 'GET_MEALS';
 export const GET_DRINKS = 'GET_DRINKS';
 export const FILTER_CATEGORY = 'FILTER_CATEGORY';
+export const FILTER_ALL = 'All';
 
 // api types
 export const DRINK_TYPE = 'drinks';
