@@ -1,9 +1,14 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
+import Loading from '../components/Loading';
 
-function FoodsDetails(props) {
-  console.log(props);
+function FoodsDetails() {
+  const pathname = window.location.pathname.split('/')[2];
+  console.log(pathname);
   return (
-    <p>Recipe details</p>
+    <Container className="d-flex justify-content-center align-items-center vh-100">
+      <Loading />
+    </Container>
   );
 }
 
