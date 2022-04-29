@@ -1,4 +1,4 @@
-import { GET_DRINKS, GET_MEALS } from '../actions';
+import { FILTER_CATEGORY, GET_DRINKS, GET_MEALS } from '../actions';
 
 const initialState = {
   drinks: [],
@@ -17,6 +17,11 @@ const categoriesButtonsReducer = (state = initialState, action) => {
     return {
       ...state,
       meals: action.meals,
+    };
+  case FILTER_CATEGORY:
+    return {
+      ...state,
+      categoryFilter: action.category,
     };
   default:
     return state;
