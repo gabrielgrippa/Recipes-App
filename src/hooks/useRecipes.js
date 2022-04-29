@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { NAME_SEARCH } from '../redux/actions';
 import { searchAction } from '../redux/actions/showcaseActions';
 import fetchCategories from '../redux/actions/categoriesActions';
 
 const useRecipes = (CURRENT_API, dispatch) => {
-  useEffect(() => {
-    const searchType = NAME_SEARCH;
-    dispatch(searchAction({
-      api: CURRENT_API,
-      searchType,
-    }));
-    dispatch(fetchCategories());
+  // useEffect(() => {
+  const searchType = NAME_SEARCH;
+  dispatch(searchAction({
+    api: CURRENT_API,
+    searchType,
+  }));
+  dispatch(fetchCategories());
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // }, []);
 };
 
 export default useRecipes;
