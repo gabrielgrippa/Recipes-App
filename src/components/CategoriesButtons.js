@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { CATEGORY_SEARCH, NAME_SEARCH, FILTER_ALL, PATH_FOODS } from '../redux/actions';
 import { searchAction } from '../redux/actions/showcaseActions';
@@ -35,19 +35,23 @@ function CategoryButtons({ selectedItem }) {
     }));
   };
 
-  const renderButtons = (categories) => (
-    <div>
-      {categories.map((category) => (
-        <Button
-          key={ category }
-          data-testid={ `${category}-category-filter` }
-          onClick={ () => filteringByCategory(category) }
-        >
-          {category}
-        </Button>
-      ))}
-    </div>
-  );
+  const renderButtons = (categories) => {
+    const dinamicBg = selectedItem === PATH_FOODS
+      ? 'bg-warning text-dark' : 'bg-info text-white';
+    return (
+      <Container className="d-flex flex-wrap mt-2 mb-2">
+        {categories.map((category) => (
+          <Button
+            className={ `${dinamicBg} flex-fill m-1` }
+            key={ category }
+            data-testid={ `${category}-category-filter` }
+            onClick={ () => filteringByCategory(category) }
+          >
+            {category}
+          </Button>
+        ))}
+      </Container>);
+  };
 
   const currentPage = selectedItem === PATH_FOODS ? meals : drinks;
 

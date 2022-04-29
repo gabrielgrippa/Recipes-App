@@ -12,7 +12,7 @@ function ShowCase() {
   const keyId = `id${keyData}`;
 
   return (
-    <Container>
+    <Container className="d-flex flex-wrap justify-content-center">
       {currentRecipes.map((recipe, index) => (
         <RecipeCard
           key={ recipe[keyId] }
