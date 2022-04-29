@@ -16,9 +16,11 @@ function ShowCase() {
       {currentRecipes.map((recipe, index) => (
         <RecipeCard
           key={ recipe[keyId] }
+          recipeId={ recipe[keyId] }
           index={ index }
           keyImg={ recipe[keyImg] }
           keyName={ recipe[keyName] }
+          pathname={ pathname }
         />
       ))}
     </Container>
