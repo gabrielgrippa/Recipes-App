@@ -1,4 +1,10 @@
-import { DRINK_TYPE, TOGGLE_SEARCH_BAR, SET_SHOWCASE_ITEMS } from '.';
+import {
+  DRINK_TYPE,
+  TOGGLE_SEARCH_BAR,
+  SET_SHOWCASE_ITEMS,
+  MEAL_TYPE, PATH_FOODS,
+} from '.';
+
 import searchApi from '../../services/API';
 
 const searchAction = (options) => async (dispatch, getState) => {
@@ -6,6 +12,7 @@ const searchAction = (options) => async (dispatch, getState) => {
 
   const request = await searchApi({
     ...options,
+    api: options.api === PATH_FOODS ? MEAL_TYPE : DRINK_TYPE,
     token: options.api === DRINK_TYPE ? cocktailsToken : mealsToken,
   });
 

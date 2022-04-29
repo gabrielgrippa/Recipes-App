@@ -16,3 +16,6 @@ export const CATEGORY_LIST = 'categoryList';
 export const SET_SHOWCASE_ITEMS = 'SET_SHOWCASE_ITEMS';
 export const RESET_SHOWCASE = 'RESET_SHOWCASE';
 export const TOGGLE_SEARCH_BAR = 'TOGGLE_SEARCH_BAR';
+
+// Pathname
+export const PATH_FOODS = 'foods';
