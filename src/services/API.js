@@ -4,6 +4,7 @@ import {
   FIRST_LETTER_SEARCH,
   INGREDIENT_SEARCH,
   NAME_SEARCH,
+  CATEGORY_SEARCH,
 } from '../redux/actions';
 
 const BASE_MEALS = 'https://www.themealdb.com/api/json/v1/';
@@ -12,6 +13,7 @@ const BASE_DRINKS = 'https://www.thecocktaildb.com/api/json/v1/';
 const mapTypeToPath = {
   [NAME_SEARCH]: 'search.php?s=',
   [INGREDIENT_SEARCH]: 'filter.php?i=',
+  [CATEGORY_SEARCH]: 'filter.php?c=',
   [FIRST_LETTER_SEARCH]: 'search.php?f=',
   [CATEGORY_LIST]: 'list.php?c=list',
 };
@@ -19,7 +21,7 @@ const mapTypeToPath = {
 /**
  * @param {Object} options - Opções da pesquisa.
  * @param {"drinks" | "meals"} options.api - Qual API será requisitada
- * @param {"name" | "ingredient" | "firstletter" | "categoryList"} options.searchType - Tipo de pesquisa que será efetuada
+ * @param {"name" | "ingredient" | "category" | "firstletter" | "categoryList"} options.searchType - Tipo de pesquisa que será efetuada
  * @param {string | undefined} options.query - Valor da pesquisa
  */
 const searchApi = async ({ api, searchType, query, token }) => {
