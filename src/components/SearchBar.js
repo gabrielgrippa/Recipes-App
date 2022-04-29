@@ -68,21 +68,21 @@ function SearchBar() {
 
         <Container className="d-flex justify-content-between my-2">
           <Form.Check
-            checked={ form.searchType === 'name' }
+            checked={ form.searchType === NAME_SEARCH }
             onChange={ handleInput }
             type="radio"
             name="searchType"
-            value="name"
+            value={ NAME_SEARCH }
             id="name-radio"
             label="Name"
             data-testid="name-search-radio"
           />
           <Form.Check
-            checked={ form.searchType === 'ingredient' }
+            checked={ form.searchType === INGREDIENT_SEARCH }
             onChange={ handleInput }
             type="radio"
             name="searchType"
-            value="ingredient"
+            value={ INGREDIENT_SEARCH }
             id="ingredient-radio"
             label="Ingredient"
             data-testid="ingredient-search-radio"
