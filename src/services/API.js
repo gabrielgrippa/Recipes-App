@@ -30,6 +30,7 @@ const searchApi = async ({ api, searchType, query, token }) => {
   const QUERY = query ? query.trim() : '';
 
   const FULL_URL = `${BASE_URL}${token}/${SEARCH_TYPE}${QUERY}`;
+  console.log(FULL_URL); // temporario
   try {
     const request = await fetch(FULL_URL);
     const data = await request.json();
