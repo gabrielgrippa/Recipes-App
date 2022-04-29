@@ -20,3 +20,6 @@ export const TOGGLE_SEARCH_BAR = 'TOGGLE_SEARCH_BAR';
 
 // Pathname
 export const PATH_FOODS = 'foods';
+
+// Loading
+export const RECIPES_LOADING = 'RECIPES_LOADING';

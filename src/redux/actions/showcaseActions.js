@@ -7,9 +7,10 @@ import {
 
 import searchApi from '../../services/API';
 
+const loadingRecipes = (state) => ({ type: RECIPES_LOADING, state });
+
 const searchAction = (options) => async (dispatch, getState) => {
   const { profileReducer: { cocktailsToken, mealsToken } } = getState();
-
   const request = await searchApi({
     ...options,
     api: options.api === PATH_FOODS ? MEAL_TYPE : DRINK_TYPE,
@@ -24,4 +25,4 @@ const searchAction = (options) => async (dispatch, getState) => {
 
 const toggleSearchBar = { type: TOGGLE_SEARCH_BAR };
 
-export { searchAction, toggleSearchBar };
+export { searchAction, toggleSearchBar, loadingRecipes };
