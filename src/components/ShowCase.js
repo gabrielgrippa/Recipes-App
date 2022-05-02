@@ -13,9 +13,16 @@ function ShowCase() {
   const keyName = `str${keyData}`;
   const keyId = `id${keyData}`;
 
+  // Caso retorne uma receita da barra de pesquisa, ja redireciona para os detalhes da receita.
   if (currentRecipes.length === 1 && searchBar) {
     return <Redirect to={ `/${pathname}/${currentRecipes[0][keyId]}` } />;
   }
+
+  // Retorna um alerta, caso o resultado pela barra de pesquisa for 0
+  if (currentRecipes.length === 0 && searchBar) {
+    global.alert('Sorry, we haven\'t found any recipes for these filters.');
+  }
+
   return (
     <Container className="d-flex flex-wrap justify-content-center">
       {currentRecipes.map((recipe, index) => (
