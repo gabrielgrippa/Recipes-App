@@ -24,7 +24,7 @@ function ShowCase() {
   }
 
   return (
-    <Container className="d-flex flex-wrap justify-content-center">
+    <Container className="d-flex flex-wrap justify-content-center pb-5">
       {currentRecipes.map((recipe, index) => (
         <RecipeCard
           key={ recipe[keyId] }
