@@ -10,7 +10,7 @@ function Explore() {
   const history = useHistory();
 
   const handlerClick = (path) => {
-    history.push(`/explore/${path}/`);
+    history.push(`/explore/${path}`);
   };
 
   return (
@@ -23,12 +23,12 @@ function Explore() {
             ? 'bg-warning text-dark' : 'bg-info text-white';
           return (
             <Button
-              data-testid={ `explore-${button}` }
+              data-testid={ `explore-${lowerText}` }
               key={ button }
               className={ `m-1 ${dinamicBg}` }
               onClick={ () => handlerClick(lowerText) }
             >
-              { `Explorer ${button}` }
+              { `Explore ${button}` }
             </Button>
           );
         })}
