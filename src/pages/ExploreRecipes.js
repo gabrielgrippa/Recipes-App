@@ -1,5 +1,6 @@
 import React from 'react';
 import ExploreButtons from '../components/ExploreButtons';
+import Footer from '../components/Footer';
 
 import Header from '../components/Header';
 import { PATH_FOODS } from '../redux/actions';
@@ -13,6 +14,7 @@ function ExploreRecipes() {
     <div>
       <Header title={ `Explore ${currentTitle}` } enableSearch={ false } />
       <ExploreButtons exploreButtons={ foodsButtons } />
+      <Footer />
     </div>
   );
 }
