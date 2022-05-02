@@ -15,7 +15,7 @@ function Explore() {
 
   return (
     <Container>
-      <Header title="Explorer" />
+      <Header title="Explorer" enableSearch={ false } />
       <Container className="d-flex flex-column mt-5">
         {exploreButtons.map((button) => {
           const lowerText = button.toLowerCase();
