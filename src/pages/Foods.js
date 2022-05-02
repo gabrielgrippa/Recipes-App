@@ -1,11 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import CategoriesButtons from '../components/CategoriesButtons';
 import Header from '../components/Header';
 import ShowCase from '../components/ShowCase';
 import SearchBar from '../components/SearchBar';
+import useRecipes from '../hooks/useRecipes';
 
-function Foods({ location: { pathname } }) {
+function Foods() {
+  const pathname = window.location.pathname.split('/')[1];
+  const dispatch = useDispatch();
+  useRecipes(pathname, dispatch);
   return (
     <div>
       <Header title="Foods" />
@@ -15,9 +19,5 @@ function Foods({ location: { pathname } }) {
     </div>
   );
 }
-
-Foods.propTypes = {
-  pathname: PropTypes.string,
-}.isRequired;
 
 export default Foods;

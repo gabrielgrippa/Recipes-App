@@ -1,5 +1,3 @@
-import fetchCategories from './categoriesActions';
-
 const loginAction = (email) => (dispatch) => {
   localStorage.setItem('user', JSON.stringify({ email }));
   localStorage.setItem('cocktailsToken', '1');
@@ -13,7 +11,6 @@ const loginAction = (email) => (dispatch) => {
       mealsToken: '1',
     },
   });
-  dispatch(fetchCategories());
 };
 
 export default loginAction;

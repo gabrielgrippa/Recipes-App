@@ -1,4 +1,11 @@
-import { CATEGORY_LIST, DRINK_TYPE, GET_DRINKS, GET_MEALS, MEAL_TYPE } from '.';
+import {
+  CATEGORY_LIST,
+  DRINK_TYPE,
+  GET_DRINKS,
+  GET_MEALS,
+  MEAL_TYPE,
+  FILTER_CATEGORY,
+} from '.';
 import searchApi from '../../services/API';
 
 const infoDefault = { searchType: CATEGORY_LIST, query: '', token: 1 };
@@ -24,5 +31,7 @@ const fetchCategories = () => async (dispatch) => {
     console.log(`Erro encontrando API MEALS ${error}`);
   }
 };
+
+export const filterCategory = (category) => ({ type: FILTER_CATEGORY, category });
 
 export default fetchCategories;
