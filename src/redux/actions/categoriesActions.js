@@ -6,7 +6,7 @@ import {
   MEAL_TYPE,
   FILTER_CATEGORY,
 } from '.';
-import searchApi from '../../services/API';
+import { searchApi } from '../../services/API';
 
 const infoDefault = { searchType: CATEGORY_LIST, query: '', token: 1 };
 
