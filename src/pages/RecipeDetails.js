@@ -34,8 +34,8 @@ function RecipeDetails() {
       const normalizedRecipe = recipeNormalizer(route.currentApiType, recipeReq);
       setRecipe(normalizedRecipe);
 
-      const SIX = 6;
-      setRecommended(recommendedReq.slice(0, SIX));
+      const QT_MAX = 6;
+      setRecommended(recommendedReq.slice(0, QT_MAX));
     })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [api, recipeId]);
