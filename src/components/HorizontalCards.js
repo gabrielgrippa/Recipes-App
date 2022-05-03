@@ -7,33 +7,38 @@ import RecipeActions from './RecipeDetails/RecipeActions';
 function HorizontalCards({ recipesArray }) {
   return (
     <Container
-      className="d-flex flex-wrap justify-content-left"
-      style={ { width: '80%' } }
+      className="d-flex flex-wrap justify-content-center"
     >
       {recipesArray.map((recipe, index) => (
         <Container
           key={ recipe.id }
-          style={ { margin: '2.5%', position: 'relative' } }
+          className="d-flex bg-warning text-dark shadow-sm p-2"
+          style={ { margin: '2.5%',
+            position: 'relative',
+            borderRadius: '5px',
+            width: '100%',
+          } }
         >
           <Link
             to={ `/${recipe.type}s/${recipe.id}` }
-            style={ { width: '100%' } }
           >
             <Card
               className="text-center d-flex flex-row"
+              style={ { border: 'none' } }
             >
               <Card.Img
                 data-testid={ `${index}-horizontal-image` }
                 src={ recipe.image }
                 alt={ `${recipe.name}-img` }
                 variant="bottom"
+                style={ { width: '50%' } }
               />
               <Card.Body
                 data-testid={ `${index}-card-name` }
                 className="bg-warning text-dark"
+                style={ { width: '50%', padding: '5px' } }
               >
                 <Card.Text
-                  style={ { fontSize: 12 } }
                   data-testid={ `${index}-horizontal-top-text` }
                 >
                   { recipe.type === 'food' ? `${recipe.nationality} - ${recipe
@@ -47,7 +52,13 @@ function HorizontalCards({ recipesArray }) {
               </Card.Body>
             </Card>
           </Link>
-          <Container style={ { position: 'absolute', bottom: 0 } }>
+          <Container
+            style={ {
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              width: '50%' } }
+          >
             <RecipeActions recipe={ recipe } />
           </Container>
         </Container>
