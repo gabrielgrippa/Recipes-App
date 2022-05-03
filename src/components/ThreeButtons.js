@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
-import favoriteRecipes from './favoriteRecipes';
 import HorizontalCards from './HorizontalCards';
 
 function ThreeButtons() {
-  const [arrayToRender, setArrayToRender] = useState(favoriteRecipes);
+  const storedRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '{}');
+  const [arrayToRender, setArrayToRender] = useState(storedRecipes);
 
   const handleClick = ({ target }) => {
     if (target.value === 'All') {
-      setArrayToRender(favoriteRecipes);
+      setArrayToRender(storedRecipes);
     } else {
-      const filteredArray = favoriteRecipes.filter((recipe) => (
+      const filteredArray = storedRecipes.filter((recipe) => (
         recipe.type === target.value
       ));
       setArrayToRender(filteredArray);
