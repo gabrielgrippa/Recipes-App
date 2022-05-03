@@ -5,17 +5,15 @@ import Login from './pages/Login';
 
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
-import FoodsDetails from './pages/FoodsDetails';
-import DrinksDetails from './pages/DrinksDetails';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
+import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/foods/:id" component={ FoodsDetails } />
+      <Route exact path="/:api/:recipeId" component={ RecipeDetails } />
       <Route exact path="/foods" component={ Foods } />
-      <Route exact path="/drinks/:id" component={ DrinksDetails } />
       <Route exact path="/drinks" component={ Drinks } />
       <Route exact path="/" component={ Login } />
       <Route exact path="/profile" component={ Profile } />

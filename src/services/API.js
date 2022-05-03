@@ -40,4 +40,18 @@ const searchApi = async ({ api, searchType, query, token }) => {
   }
 };
 
-export default searchApi;
+async function getRecipe(api, id) {
+  const BASE = api === DRINK_TYPE ? BASE_DRINKS : BASE_MEALS;
+  const URL = `${BASE}1/lookup.php?i=${id}`;
+
+  try {
+    const request = await fetch(URL);
+    const data = await request.json();
+    return data[api][0];
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+export { searchApi, getRecipe };

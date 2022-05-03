@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Card, Container, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import loginAction from '../redux/actions/profileActions';
+import { loginAction } from '../redux/actions/profileActions';
 
 function Login() {
   const [form, updateForm] = useState({ email: '', password: '' });

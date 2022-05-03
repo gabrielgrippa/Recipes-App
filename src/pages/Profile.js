@@ -18,10 +18,12 @@ function Profile() {
       <Navbar bg="light" variant="light" className="shadow-sm">
 
         <Header title="Profile" enableSearch={ false } />
-        <Navbar.Brand data-testid="profile-email" className="">
-          {emailFromLocalStorage}
-        </Navbar.Brand>
+
       </Navbar>
+
+      <Navbar.Brand data-testid="profile-email" className="">
+        {emailFromLocalStorage}
+      </Navbar.Brand>
 
       <Container>
         <Button
