@@ -18,7 +18,8 @@ function ExploreRecipes() {
   const history = useHistory();
 
   const handlerClick = (path) => {
-    const explorePath = path === 'ingredient' ? 'ingredients' : 'nationalities';
+    const explorePath = path.split(' ')[1] === 'ingredient'
+      ? 'ingredients' : 'nationalities';
     if (path === 'surprise') {
       console.log('solicitacao random para api redicionando para tela inicial');
       history.push(`/${pathname}`);
