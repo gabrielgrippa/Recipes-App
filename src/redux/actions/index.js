@@ -25,3 +25,7 @@ export const PATH_FOODS = 'foods';
 
 // Loading
 export const RECIPES_LOADING = 'RECIPES_LOADING';
+
+// Profile actions
+export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';

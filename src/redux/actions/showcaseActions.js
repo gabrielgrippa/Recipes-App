@@ -5,7 +5,7 @@ import {
   MEAL_TYPE, PATH_FOODS,
 } from '.';
 
-import searchApi from '../../services/API';
+import { searchApi } from '../../services/API';
 
 const loadingRecipes = (state) => ({ type: RECIPES_LOADING, state });
 
