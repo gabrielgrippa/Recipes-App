@@ -5,6 +5,7 @@ import Login from './pages/Login';
 
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
+import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import RecipeDetails from './pages/RecipeDetails';
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/foods" component={ Foods } />
       <Route exact path="/drinks" component={ Drinks } />
       <Route exact path="/" component={ Login } />
+      <Route exact path="/favorite-recipes" component={ Favorites } />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
     </Switch>
