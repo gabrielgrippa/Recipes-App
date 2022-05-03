@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 
 function Profile() {
   const history = useHistory();
+  // linhas para passar no cypress
   const getEmail = JSON.parse(localStorage.getItem('user') || '{}');
   const emailFromLocalStorage = (getEmail.email);
 
