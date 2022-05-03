@@ -7,7 +7,7 @@ function ExploreButtons({ exploreButtons, handlerClick }) {
   const renderLabel = (text) => {
     if (text === 'Foods' || text === 'Drinks') return `Explore ${text}`;
     if (text === 'Surprise') return 'Surprise me!';
-    return `By ${text}`;
+    return `${text}`;
   };
 
   const testIdLabel = (text) => {

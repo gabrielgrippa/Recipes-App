@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { PATH_FOODS } from '../redux/actions';
 
-const allButtons = ['Ingredient', 'Nationality', 'Surprise'];
+const allButtons = ['By Ingredient', 'By Nationality', 'Surprise'];
 
 function ExploreRecipes() {
   const pathname = window.location.pathname.split('/')[2];
