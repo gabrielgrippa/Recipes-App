@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 function ExploreNationalities() {
   return (
     <Container>
-      <Header title="Explore Nationalities" enableSearch={ false } />
+      <Header title="Explore Nationalities" />
 
       <Footer />
     </Container>
