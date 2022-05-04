@@ -5,6 +5,7 @@ import {
   INGREDIENT_SEARCH,
   NAME_SEARCH,
   CATEGORY_SEARCH,
+  INGREDIENTS_LIST,
 } from '../redux/actions';
 
 const BASE_MEALS = 'https://www.themealdb.com/api/json/v1/';
@@ -16,12 +17,13 @@ const mapTypeToPath = {
   [CATEGORY_SEARCH]: 'filter.php?c=',
   [FIRST_LETTER_SEARCH]: 'search.php?f=',
   [CATEGORY_LIST]: 'list.php?c=list',
+  [INGREDIENTS_LIST]: 'list.php?i=list',
 };
 
 /**
  * @param {Object} options - Opções da pesquisa.
  * @param {"drinks" | "meals"} options.api - Qual API será requisitada
- * @param {"name" | "ingredient" | "category" | "firstletter" | "categoryList"} options.searchType - Tipo de pesquisa que será efetuada
+ * @param {"name" | "ingredient" | "category" | "firstletter" | "categoryList" | "ingredientsList"} options.searchType - Tipo de pesquisa que será efetuada
  * @param {string | undefined} options.query - Valor da pesquisa
  */
 const searchApi = async ({ api, searchType, query, token }) => {
@@ -54,6 +56,7 @@ async function getRecipe(api, id) {
   }
 }
 
+// Mesma lógica da função de getRecipe, talvez poderiamos unificar elas, fazendo um searchType.
 async function getRandomRecipeId(api) {
   const BASE = api === DRINK_TYPE ? BASE_DRINKS : BASE_MEALS;
   const URL = `${BASE}1/random.php`;

@@ -14,6 +14,7 @@ export const CATEGORY_SEARCH = 'category';
 export const NAME_SEARCH = 'name';
 export const FIRST_LETTER_SEARCH = 'firstletter';
 export const CATEGORY_LIST = 'categoryList';
+export const INGREDIENTS_LIST = 'ingredientsList';
 
 // Showcase actions
 export const SET_SHOWCASE_ITEMS = 'SET_SHOWCASE_ITEMS';
