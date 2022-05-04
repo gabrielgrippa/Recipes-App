@@ -5,10 +5,10 @@ import Login from './pages/Login';
 
 import Recipes from './pages/Recipes';
 import RecipeDetails from './pages/RecipeDetails';
-import Explore from './pages/Explore';
-import ExploreRecipes from './pages/ExploreRecipes';
-import ExploreIngredients from './pages/ExploreIngredients';
-import ExploreNationalities from './pages/ExploreNationalities';
+import Explore from './pages/Explore/Explore';
+import ExploreRecipes from './pages/Explore/ExploreRecipes';
+import ExploreIngredients from './pages/Explore/ExploreIngredients';
+import ExploreNationalities from './pages/Explore/ExploreNationalities';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';

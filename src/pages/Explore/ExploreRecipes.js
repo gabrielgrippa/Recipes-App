@@ -1,10 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import ExploreButtons from '../components/ExploreButtons';
-import Footer from '../components/Footer';
+import ExploreButtons from '../../components/ExploreButtons';
+import Footer from '../../components/Footer';
 
-import Header from '../components/Header';
-import { PATH_FOODS } from '../redux/actions';
+import Header from '../../components/Header';
+import { PATH_FOODS } from '../../redux/actions';
 
 const allButtons = ['By Ingredient', 'By Nationality', 'Surprise'];
 
