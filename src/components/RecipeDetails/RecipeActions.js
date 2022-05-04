@@ -15,7 +15,7 @@ function RecipeActions({ recipe }) {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
-    clipboard(window.location.href);
+    clipboard(`${window.location.origin}/${recipe.type}s/${recipe.id}`);
     setCopied(true);
   };
 
