@@ -58,11 +58,10 @@ async function getRandomRecipeId(api) {
   const BASE = api === DRINK_TYPE ? BASE_DRINKS : BASE_MEALS;
   const URL = `${BASE}1/random.php`;
 
-  // Estudando a função normalize pra pegar o id tanto de meals e drinks
   try {
     const request = await fetch(URL);
     const data = await request.json();
-    return data;
+    return data[api][0];
   } catch (error) {
     console.log(`Random API: ${error}`);
   }
