@@ -29,3 +29,5 @@ export const RECIPES_LOADING = 'RECIPES_LOADING';
 // Profile actions
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
+export const UPDATE_PROGRESS = 'UPDATE_PROGRESS';
+export const UPDATE_DONE_RECIPES = 'UPDATE_DONE_RECIPES';
