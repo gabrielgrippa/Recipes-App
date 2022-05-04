@@ -3,26 +3,26 @@ import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-function RecipeCard({ keyImg, keyName, index, pathname, recipeId }) {
+function RecipeCard({ recipe, index, pathname }) {
   const dinamicBg = pathname === 'foods' ? 'bg-warning text-dark' : 'bg-info text-white';
   return (
     <Link
       data-testid={ `${index}-recipe-card` }
-      to={ `/${pathname}/${recipeId}` }
+      to={ `/${pathname}/${recipe.id}` }
       style={ { width: '148.5px', margin: '2.5%' } }
     >
       <Card className="text-center">
         <Card.Img
           data-testid={ `${index}-card-img` }
-          src={ keyImg }
-          alt={ `${keyName}-img` }
+          src={ recipe.image }
+          alt={ `${recipe.title}-img` }
           variant="top"
         />
         <Card.Footer
           data-testid={ `${index}-card-name` }
           className={ dinamicBg }
         >
-          { keyName }
+          { recipe.title }
         </Card.Footer>
       </Card>
     </Link>
@@ -30,8 +30,7 @@ function RecipeCard({ keyImg, keyName, index, pathname, recipeId }) {
 }
 
 RecipeCard.propTypes = {
-  keyImg: PropTypes.string,
-  keyName: PropTypes.string,
+  recipe: PropTypes.object,
   pathname: PropTypes.string,
 }.isRequired;
 

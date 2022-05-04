@@ -7,21 +7,28 @@ import {
 
 import { searchApi } from '../../services/API';
 
+import recipeNormalizer from '../../services/recipeNormalizer';
+import routeHelper from '../../services/routeHelper';
+
 const loadingRecipes = (state) => ({ type: RECIPES_LOADING, state });
 
 const searchAction = (options) => async (dispatch) => {
-  // Por alguma motivo o cypress não gera os tokens no localstorage dele, ocorrendo problemas no teste.
-  // const { profileReducer: { cocktailsToken, mealsToken } } = getState();
   const request = await searchApi({
     ...options,
     api: options.api === PATH_FOODS ? MEAL_TYPE : DRINK_TYPE,
-    token: 1, // options.api === DRINK_TYPE ? cocktailsToken : mealsToken,
+    token: 1,
   });
-
-  const LIMIT_INDEX = 12;
+  const route = routeHelper(options.api);
+  const QT_MAX = 12;
+  const MAX_RECIPES = request.slice(0, QT_MAX);
+  const normalizedRecipes = MAX_RECIPES
+    .reduce(
+      (recipes, recipe) => [
+        ...recipes, recipeNormalizer(route.currentApiType, recipe)], [],
+    );
   dispatch({
     type: SET_SHOWCASE_ITEMS,
-    payload: request ? request.slice(0, LIMIT_INDEX) : [] });
+    payload: normalizedRecipes });
 };
 
 const toggleSearchBar = { type: TOGGLE_SEARCH_BAR };

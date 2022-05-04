@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 
-import Recipes from './pages/Recipes';
+import MainScreen from './pages/MainScreen';
 import RecipeDetails from './pages/RecipeDetails';
 import Explore from './pages/Explore/Explore';
 import ExploreRecipes from './pages/Explore/ExploreRecipes';
@@ -21,7 +21,7 @@ const exploreNationalitiesPath = '/explore/foods/nationalities';
 const exploreRecipesPath = '/explore/:recipes';
 const explorePath = '/explore';
 const recipesIdPath = '/:api/:recipeId';
-const recipesPath = '/:recipes';
+const recipesPath = '/:recipeType';
 const loginPath = '/';
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
       <Route exact path={ exploreRecipesPath } component={ ExploreRecipes } />
       <Route exact path={ explorePath } component={ Explore } />
       <Route exact path={ recipesIdPath } component={ RecipeDetails } />
-      <Route exact path={ recipesPath } component={ Recipes } />
+      <Route exact path={ recipesPath } component={ MainScreen } />
       <Route exact path={ loginPath } component={ Login } />
     </Switch>
   );
