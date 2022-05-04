@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import RecipeCard from './RecipeCard';
+import DisplayCard from './DisplayCard';
 
 function ShowCase() {
   const currentRecipes = useSelector((state) => state.showcaseReducer.results);
@@ -23,8 +23,9 @@ function ShowCase() {
   return (
     <Container className="d-flex flex-wrap justify-content-center pb-5">
       {currentRecipes.map((recipe, index) => (
-        <RecipeCard
+        <DisplayCard
           key={ recipe.id }
+          typeCard="recipe"
           index={ index }
           recipe={ recipe }
           pathname={ recipeType }
