@@ -30,34 +30,42 @@ function RecipeIngredients({ recipe, editMode }) {
     <Container>
       <h5><strong>Ingredients</strong></h5>
 
-      { recipe.ingredients.map(({ name, measure }, index) => (
-        editMode ? (
-          <div
-            className="form-check"
-            data-testid={ `${index}-ingredient-step` }
-            key={ index }
-          >
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id={ name }
-              name={ index }
-              checked={ recipeProgress.includes(`${index}`) }
-              onChange={ onCheck }
-            />
-            <label className="form-check-label" htmlFor={ name }>
+      { recipe.ingredients.map(({ name, measure }, index) => {
+        const checked = recipeProgress.includes(`${index}`);
+        const disableDecoration = checked ? 'line-through' : 'none';
+        return (
+          editMode ? (
+            <div
+              className="form-check"
+              data-testid={ `${index}-ingredient-step` }
+              key={ index }
+            >
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id={ name }
+                name={ index }
+                checked={ checked }
+                onChange={ onCheck }
+              />
+              <label
+                className="form-check-label"
+                style={ { textDecoration: disableDecoration } }
+                htmlFor={ name }
+              >
+                { `${name}${measure ? ` - ${measure}` : ''}` }
+              </label>
+            </div>
+          ) : (
+            <p
+              key={ index }
+              className="m-0"
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
               { `${name}${measure ? ` - ${measure}` : ''}` }
-            </label>
-          </div>
-        ) : (
-          <p
-            key={ index }
-            className="m-0"
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            { `${name}${measure ? ` - ${measure}` : ''}` }
-          </p>
-        )))}
+            </p>
+          ));
+      })}
 
     </Container>
   );
