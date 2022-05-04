@@ -20,7 +20,7 @@ const searchAction = (options) => async (dispatch) => {
   });
   const route = routeHelper(options.api);
   const QT_MAX = 12;
-  const MAX_RECIPES = request.slice(0, QT_MAX);
+  const MAX_RECIPES = request ? request.slice(0, QT_MAX) : [];
   const normalizedRecipes = MAX_RECIPES
     .reduce(
       (recipes, recipe) => [
