@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { Button, Card, Container } from 'react-bootstrap';
 import { useParams, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Loading from '../components/Loading';
 import { getRecipe, searchApi } from '../services/API';
 import recipeNormalizer from '../services/recipeNormalizer';
@@ -10,28 +11,32 @@ import RecipeIngredients from '../components/RecipeDetails/RecipeIngredients';
 import RecipeInstructions from '../components/RecipeDetails/RecipeInstructions';
 import RecipeVideo from '../components/RecipeDetails/RecipeVideo';
 import RecipeTitle from '../components/RecipeDetails/RecipeTitle';
-import RecipeHandler from '../components/RecipeDetails/RecipeHandler';
 
 function RecipeDetails() {
   const [recipe, setRecipe] = useState(null);
   const [recommended, setRecommended] = useState(null);
 
   const { api, recipeId } = useParams();
-  const route = routeHelper(api);
+  const {
+    currentApiType,
+    oppositeApiType,
+    oppositeRoute,
+    progressRecipeKey,
+  } = routeHelper(api);
 
   useEffect(() => {
     setRecipe(null);
     setRecommended(null);
 
     (async () => {
-      const recipeReq = await getRecipe(route.currentApiType, recipeId);
+      const recipeReq = await getRecipe(currentApiType, recipeId);
       const recommendedReq = await searchApi({
-        api: route.oppositeApiType,
+        api: oppositeApiType,
         searchType: 'name',
         token: '1',
       });
 
-      const normalizedRecipe = recipeNormalizer(route.currentApiType, recipeReq);
+      const normalizedRecipe = recipeNormalizer(currentApiType, recipeReq);
       setRecipe(normalizedRecipe);
 
       const QT_MAX = 6;
@@ -39,6 +44,14 @@ function RecipeDetails() {
     })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [api, recipeId]);
+
+  const recipeProgress = useSelector((state) => {
+    const { inProgressRecipes } = state.profileReducer;
+    return inProgressRecipes[progressRecipeKey];
+  })[recipeId];
+
+  const recipeDone = useSelector((state) => state.profileReducer.doneRecipes)
+    ?.find((item) => item.id === recipeId);
 
   if (!recipe || !recommended) return <Loading fullPage />;
   return (
@@ -76,12 +89,12 @@ function RecipeDetails() {
           style={ { gap: '10px' } }
         >
           { recommended.map((item, index) => {
-            const normalized = recipeNormalizer(route.oppositeApiType, item);
+            const normalized = recipeNormalizer(oppositeApiType, item);
 
             return (
               <Link
                 key={ normalized.id }
-                to={ `${route.oppositeRoute}/${normalized.id}` }
+                to={ `${oppositeRoute}/${normalized.id}` }
                 style={ { minWidth: '50%' } }
                 data-testid={ `${index}-recomendation-card` }
               >
@@ -109,7 +122,16 @@ function RecipeDetails() {
       </Container>
 
       <div className="mb-5 pb-2" />
-      <RecipeHandler />
+      { !recipeDone && (
+        <Link to={ `/${api}/${recipeId}/in-progress` }>
+          <Button
+            className="w-100 fixed-bottom p-2"
+            data-testid="start-recipe-btn"
+          >
+            { recipeProgress ? 'Continue Recipe' : 'Start Recipe' }
+          </Button>
+        </Link>
+      ) }
     </>
   );
 }
