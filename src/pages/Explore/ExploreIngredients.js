@@ -7,6 +7,10 @@ import Loading from '../../components/Loading';
 import routeHelper from '../../services/routeHelper';
 import { searchApi } from '../../services/API';
 import { INGREDIENTS_LIST } from '../../redux/actions';
+import DisplayCard from '../../components/DisplayCard';
+
+const DRINKS_IMG = 'https://www.thecocktaildb.com/';
+const FOODS_IMG = 'https://www.themealdb.com/';
 
 function ExploreIngredients() {
   const [ingredients, setIngredients] = useState([]);
@@ -14,6 +18,11 @@ function ExploreIngredients() {
   const route = routeHelper(recipeType);
 
   const emptyIngredients = ingredients.length === 0;
+
+  const getIngredientImg = (ingredient) => {
+    const urlBase = recipeType === 'drinks' ? DRINKS_IMG : FOODS_IMG;
+    return `${urlBase}images/ingredients/${ingredient}-small.png`;
+  };
 
   const getIngredients = async () => {
     const ingredientsReq = await searchApi({
@@ -25,7 +34,9 @@ function ExploreIngredients() {
     const QT_MAX = 12;
     const ingredientsNamesList = ingredientsReq
       .slice(0, QT_MAX)
-      .map((ingredient) => ingredient[ingredientKey]);
+      .map((ingredient) => ingredient[ingredientKey])
+      .reduce((fullData, ingredient) => [
+        ...fullData, { title: ingredient, image: getIngredientImg(ingredient) }], []);
     setIngredients(ingredientsNamesList);
   };
 
@@ -35,12 +46,27 @@ function ExploreIngredients() {
   }, []);
 
   return (
-    <Container>
+    <>
       <Header title="Explore Ingredients" enableSearch={ false } />
-      { emptyIngredients
-        ? <Loading fullPage /> : 'teste'}
+      <Container className="d-flex flex-wrap justify-content-center pb-5">
+        { emptyIngredients
+          ? <Loading fullPage />
+          : (
+
+            ingredients.map((ingredient, index) => (
+              <DisplayCard
+                key={ ingredient.title }
+                typeCard="ingredient"
+                index={ index }
+                recipe={ ingredient }
+                pathname={ recipeType }
+              />
+            ))
+
+          )}
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 }
 
