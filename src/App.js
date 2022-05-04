@@ -16,7 +16,7 @@ import DoneRecipes from './pages/DoneRecipes';
 const favoriteRecipesPath = '/favorite-recipes';
 const profilePath = '/profile';
 const doneRecipesPath = '/done-recipes';
-const exploreIngredientsPath = '/explore/:recipes/ingredients';
+const exploreIngredientsPath = '/explore/:recipeType/ingredients';
 const exploreNationalitiesPath = '/explore/foods/nationalities';
 const exploreRecipesPath = '/explore/:recipes';
 const explorePath = '/explore';
