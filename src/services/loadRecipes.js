@@ -1,9 +1,8 @@
-// import { useEffect } from 'react';
 import { NAME_SEARCH } from '../redux/actions';
 import { searchAction } from '../redux/actions/showcaseActions';
 import fetchCategories from '../redux/actions/categoriesActions';
 
-const useRecipes = (CURRENT_API, dispatch) => {
+const loadRecipes = (CURRENT_API, dispatch) => {
   // useEffect(() => {
   const searchType = NAME_SEARCH;
   dispatch(searchAction({
@@ -15,4 +14,4 @@ const useRecipes = (CURRENT_API, dispatch) => {
   // }, []);
 };
 
-export default useRecipes;
+export default loadRecipes;

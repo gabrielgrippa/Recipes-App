@@ -62,7 +62,6 @@ function HorizontalCards({ recipesArray }) {
             <RecipeActions
               recipe={ recipe }
               testIdModifier={ `${index}-horizontal-` }
-              copyPathModifier={ `http://localhost:3000/${recipe.type}s/${recipe.id}` }
             />
           </Container>
         </Container>

@@ -8,14 +8,14 @@ import ShareIcon from '../../images/shareIcon.svg';
 import EmptyHeart from '../../images/whiteHeartIcon.svg';
 import FilledHeart from '../../images/blackHeartIcon.svg';
 
-function RecipeActions({ recipe, testIdModifier, copyPathModifier }) {
+function RecipeActions({ recipe, testIdModifier }) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.profileReducer.favoriteRecipes);
 
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
-    clipboard(copyPathModifier);
+    clipboard(`${window.location.origin}/${recipe.type}s/${recipe.id}`);
     setCopied(true);
   };
 
@@ -61,14 +61,13 @@ function RecipeActions({ recipe, testIdModifier, copyPathModifier }) {
 RecipeActions.propTypes = {
   recipe: PropTypes.shape({
     id: PropTypes.number,
+    type: PropTypes.string,
   }).isRequired,
   testIdModifier: PropTypes.string,
-  copyPathModifier: PropTypes.string,
 };
 
 RecipeActions.defaultProps = {
   testIdModifier: '',
-  copyPathModifier: window.location.href,
 };
 
 export default RecipeActions;

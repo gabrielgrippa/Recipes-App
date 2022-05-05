@@ -1,4 +1,4 @@
-import { ADD_FAVORITE, REMOVE_FAVORITE } from '.';
+import { ADD_FAVORITE, REMOVE_FAVORITE, UPDATE_DONE_RECIPES, UPDATE_PROGRESS } from '.';
 
 const loginAction = (email) => (dispatch) => {
   localStorage.setItem('user', JSON.stringify({ email }));
@@ -33,4 +33,46 @@ const removeFavorite = (id) => (dispatch) => {
   dispatch({ type: REMOVE_FAVORITE, payload: id });
 };
 
-export { addFavorite, loginAction, removeFavorite };
+const updateProgress = (api, recipeId, progress) => ({
+  type: UPDATE_PROGRESS,
+  payload: {
+    api,
+    progress,
+    recipeId,
+  },
+});
+
+const addDoneRecipe = (recipe) => (dispatch) => {
+  const {
+    id,
+    type,
+    nationality,
+    category,
+    alcoholicOrNot,
+    title,
+    image,
+    tags,
+  } = recipe;
+
+  const date = new Date();
+  const dd = date.getDate().toString().padStart(2, '0');
+  const mm = date.getMonth().toString().padStart(2, '0');
+  const yyyy = date.getFullYear().toString();
+  const today = `${dd}/${mm}/${yyyy}`;
+
+  dispatch({
+    type: UPDATE_DONE_RECIPES,
+    payload: {
+      id,
+      type,
+      nationality,
+      category,
+      alcoholicOrNot,
+      name: title,
+      image,
+      tags,
+      doneDate: today,
+    } });
+};
+
+export { addDoneRecipe, addFavorite, loginAction, removeFavorite, updateProgress };

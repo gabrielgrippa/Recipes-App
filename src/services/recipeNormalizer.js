@@ -7,6 +7,7 @@ const keymap = {
     image: 'strMealThumb',
     video: 'strYoutube',
     nationality: 'strArea',
+    tags: 'strTags',
   },
   drinks: {
     id: 'idDrink',
@@ -16,6 +17,7 @@ const keymap = {
     image: 'strDrinkThumb',
     video: 'strVideo',
     alcoholic: 'strAlcoholic',
+    tags: 'strTags',
   },
 };
 
@@ -39,8 +41,6 @@ function recipeNormalizer(api, data) {
     }];
   }, []);
 
-  console.log(api, data);
-
   const {
     id,
     category,
@@ -50,6 +50,7 @@ function recipeNormalizer(api, data) {
     video,
     alcoholic,
     nationality,
+    tags,
   } = keymap[api];
 
   return {
@@ -63,6 +64,8 @@ function recipeNormalizer(api, data) {
     source: data,
     alcoholic: data[alcoholic],
     nationality: data[nationality],
+    tags: data[tags]?.split(',') || [],
+    type: api === 'drinks' ? 'drink' : 'food',
   };
 }
 
