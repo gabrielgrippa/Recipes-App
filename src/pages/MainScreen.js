@@ -1,28 +1,41 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
 import CategoriesButtons from '../components/CategoriesButtons';
 import Header from '../components/Header';
 import ShowCase from '../components/ShowCase';
 import SearchBar from '../components/SearchBar';
-import useRecipes from '../hooks/useRecipes';
+import loadRecipes from '../services/loadRecipes';
 import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 
 function MainScreen() {
   const { recipeType } = useParams();
+  const loading = useSelector((state) => state.showcaseReducer.loading);
+  const exploreIngredients = useSelector(
+    (state) => state.showcaseReducer.exploreIngredients,
+  );
   console.log(useHistory());
   const dispatch = useDispatch();
   const currentTitle = recipeType[0].toUpperCase() + recipeType.slice(1);
-  useRecipes(recipeType, dispatch);
+
+  if (!exploreIngredients) loadRecipes(recipeType, dispatch);
   return (
     <div>
       <Header title={ currentTitle } />
       <SearchBar />
-      <CategoriesButtons selectedItem={ recipeType } />
-      <ShowCase />
-      <Footer />
+      {loading
+        ? <Loading fullPage />
+        : (
+          <>
+            <CategoriesButtons selectedItem={ recipeType } />
+            <ShowCase />
+            <Footer />
+          </>
+        )}
+
     </div>
   );
 }
