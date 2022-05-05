@@ -20,6 +20,7 @@ export const INGREDIENTS_LIST = 'ingredientsList';
 export const SET_SHOWCASE_ITEMS = 'SET_SHOWCASE_ITEMS';
 export const RESET_SHOWCASE = 'RESET_SHOWCASE';
 export const TOGGLE_SEARCH_BAR = 'TOGGLE_SEARCH_BAR';
+export const EXPLORE_INGREDIENTS = 'EXPLORE_INGREDIENTS';
 
 // Pathname
 export const PATH_FOODS = 'foods';

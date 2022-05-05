@@ -3,6 +3,8 @@ import {
   TOGGLE_SEARCH_BAR,
   SET_SHOWCASE_ITEMS,
   MEAL_TYPE, PATH_FOODS,
+  RECIPES_LOADING,
+  EXPLORE_INGREDIENTS,
 } from '.';
 
 import { searchApi } from '../../services/API';
@@ -12,7 +14,10 @@ import routeHelper from '../../services/routeHelper';
 
 const loadingRecipes = (state) => ({ type: RECIPES_LOADING, state });
 
+const exploreIngredients = (state) => ({ type: EXPLORE_INGREDIENTS, state });
+
 const searchAction = (options) => async (dispatch) => {
+  // dispatch(loadingRecipes(true));
   const request = await searchApi({
     ...options,
     api: options.api === PATH_FOODS ? MEAL_TYPE : DRINK_TYPE,
@@ -33,4 +38,4 @@ const searchAction = (options) => async (dispatch) => {
 
 const toggleSearchBar = { type: TOGGLE_SEARCH_BAR };
 
-export { searchAction, toggleSearchBar, loadingRecipes };
+export { searchAction, toggleSearchBar, loadingRecipes, exploreIngredients };
