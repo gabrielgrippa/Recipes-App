@@ -21,7 +21,7 @@ function ExploreIngredients() {
 
   const getIngredientImg = (ingredient) => {
     const urlBase = recipeType === 'drinks' ? DRINKS_IMG : FOODS_IMG;
-    return `${urlBase}images/ingredients/${ingredient}-small.png`;
+    return `${urlBase}images/ingredients/${ingredient}-Small.png`;
   };
 
   const getIngredients = async () => {
