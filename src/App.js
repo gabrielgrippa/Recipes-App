@@ -3,12 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 
-import Recipes from './pages/Recipes';
+import MainScreen from './pages/MainScreen';
 import RecipeDetails from './pages/RecipeDetails';
-import Explore from './pages/Explore';
-import ExploreRecipes from './pages/ExploreRecipes';
-import ExploreIngredients from './pages/ExploreIngredients';
-import ExploreNationalities from './pages/ExploreNationalities';
+import Explore from './pages/Explore/Explore';
+import ExploreRecipes from './pages/Explore/ExploreRecipes';
+import ExploreIngredients from './pages/Explore/ExploreIngredients';
+import ExploreNationalities from './pages/Explore/ExploreNationalities';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
@@ -17,13 +17,13 @@ import InProgressRecipe from './pages/InProgressRecipe';
 const favoriteRecipesPath = '/favorite-recipes';
 const profilePath = '/profile';
 const doneRecipesPath = '/done-recipes';
-const exploreIngredientsPath = '/explore/:recipes/ingredients';
+const exploreIngredientsPath = '/explore/:recipeType/ingredients';
 const exploreNationalitiesPath = '/explore/foods/nationalities';
 const exploreRecipesPath = '/explore/:recipes';
 const explorePath = '/explore';
 const recipesIdPath = '/:api/:recipeId';
 const inProgressRecipePath = '/:api/:recipeId/in-progress';
-const recipesPath = '/:recipes';
+const recipesPath = '/:recipeType';
 const loginPath = '/';
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
       <Route exact path={ exploreRecipesPath } component={ ExploreRecipes } />
       <Route exact path={ explorePath } component={ Explore } />
       <Route exact path={ recipesIdPath } component={ RecipeDetails } />
-      <Route exact path={ recipesPath } component={ Recipes } />
+      <Route exact path={ recipesPath } component={ MainScreen } />
       <Route exact path={ loginPath } component={ Login } />
     </Switch>
   );

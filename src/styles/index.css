@@ -7,3 +7,8 @@
 input:checked + label {
   text-decoration: line-through;
 }
+
+.footer-container button, .footer-container button :active {
+  background-color: white;
+  border: none;
+}

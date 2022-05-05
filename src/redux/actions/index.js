@@ -14,11 +14,13 @@ export const CATEGORY_SEARCH = 'category';
 export const NAME_SEARCH = 'name';
 export const FIRST_LETTER_SEARCH = 'firstletter';
 export const CATEGORY_LIST = 'categoryList';
+export const INGREDIENTS_LIST = 'ingredientsList';
 
 // Showcase actions
 export const SET_SHOWCASE_ITEMS = 'SET_SHOWCASE_ITEMS';
 export const RESET_SHOWCASE = 'RESET_SHOWCASE';
 export const TOGGLE_SEARCH_BAR = 'TOGGLE_SEARCH_BAR';
+export const EXPLORE_INGREDIENTS = 'EXPLORE_INGREDIENTS';
 
 // Pathname
 export const PATH_FOODS = 'foods';
