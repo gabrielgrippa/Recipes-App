@@ -5,8 +5,6 @@ import { Container, ResponsiveEmbed } from 'react-bootstrap';
 function RecipeVideo({ recipe }) {
   return (
     <Container>
-      <hr />
-
       <h5><strong>Video</strong></h5>
       <ResponsiveEmbed>
         <iframe

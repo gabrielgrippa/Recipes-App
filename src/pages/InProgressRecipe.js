@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,41 +14,36 @@ import recipeNormalizer from '../services/recipeNormalizer';
 import routeHelper from '../services/routeHelper';
 
 function InProgressRecipe() {
+  // Helper hooks/variables
   const dispatch = useDispatch();
   const history = useHistory();
-
   const { api, recipeId } = useParams();
   const { currentApiType, progressRecipeKey } = routeHelper(api);
 
+  // State
   const [recipe, setRecipe] = useState(null);
+  const { inProgressRecipes } = useSelector((s) => s.profileReducer);
+  const recipeProgress = inProgressRecipes[progressRecipeKey][recipeId];
+  const recipeCompleted = recipeProgress?.length === recipe?.ingredients.length;
 
-  const recipeProgress = useSelector((state) => {
-    const { inProgressRecipes } = state.profileReducer;
-    return inProgressRecipes[progressRecipeKey];
-  })[recipeId];
+  // Helper functions
+  const completeRecipe = () => {
+    dispatch(addDoneRecipe(recipe));
+    history.push('/done-recipes');
+  };
 
   useEffect(() => {
-    if (!recipeProgress) {
-      dispatch(updateProgress(progressRecipeKey, recipeId, []));
-    }
+    // Add recipe to inProgress state if it doesnt exist yet.
+    if (!recipeProgress) dispatch(updateProgress(progressRecipeKey, recipeId, []));
 
     (async () => {
       const recipeReq = await getRecipe(currentApiType, recipeId);
       const normalizedRecipe = recipeNormalizer(currentApiType, recipeReq);
       setRecipe(normalizedRecipe);
     })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!recipe) return <Loading fullPage />;
-
-  const completeRecipe = () => {
-    dispatch(addDoneRecipe(recipe));
-    history.push('/done-recipes');
-  };
-
-  const recipeCompleted = recipeProgress?.length === recipe.ingredients.length;
-
   return (
     <>
       <img

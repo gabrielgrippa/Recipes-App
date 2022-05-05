@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
 import { useParams, Link } from 'react-router-dom';
@@ -13,9 +14,8 @@ import RecipeVideo from '../components/RecipeDetails/RecipeVideo';
 import RecipeTitle from '../components/RecipeDetails/RecipeTitle';
 
 function RecipeDetails() {
-  const [recipe, setRecipe] = useState(null);
-  const [recommended, setRecommended] = useState(null);
-
+  // Helper hooks/variables
+  const RECOMMENDED_RECIPES_QTY = 6;
   const { api, recipeId } = useParams();
   const {
     currentApiType,
@@ -24,34 +24,30 @@ function RecipeDetails() {
     progressRecipeKey,
   } = routeHelper(api);
 
+  // State
+  const [recipe, setRecipe] = useState(null);
+  const [recommended, setRecommended] = useState(null);
+
+  const { inProgressRecipes, doneRecipes } = useSelector((s) => s.profileReducer);
+  const recipeProgress = inProgressRecipes[progressRecipeKey][recipeId];
+  const recipeIsDone = doneRecipes.find((done) => done.id === recipeId);
+
   useEffect(() => {
     setRecipe(null);
     setRecommended(null);
 
     (async () => {
       const recipeReq = await getRecipe(currentApiType, recipeId);
+      setRecipe(recipeNormalizer(currentApiType, recipeReq));
+
       const recommendedReq = await searchApi({
         api: oppositeApiType,
         searchType: 'name',
         token: '1',
       });
-
-      const normalizedRecipe = recipeNormalizer(currentApiType, recipeReq);
-      setRecipe(normalizedRecipe);
-
-      const QT_MAX = 6;
-      setRecommended(recommendedReq.slice(0, QT_MAX));
+      setRecommended(recommendedReq.slice(0, RECOMMENDED_RECIPES_QTY));
     })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [api, recipeId]);
-
-  const recipeProgress = useSelector((state) => {
-    const { inProgressRecipes } = state.profileReducer;
-    return inProgressRecipes[progressRecipeKey];
-  })[recipeId];
-
-  const recipeDone = useSelector((state) => state.profileReducer.doneRecipes)
-    ?.find((item) => item.id === recipeId);
+  }, []);
 
   if (!recipe || !recommended) return <Loading fullPage />;
   return (
@@ -122,7 +118,7 @@ function RecipeDetails() {
       </Container>
 
       <div className="mb-5 pb-2" />
-      { !recipeDone && (
+      { !recipeIsDone && (
         <Link to={ `/${api}/${recipeId}/in-progress` }>
           <Button
             className="w-100 fixed-bottom p-2"
