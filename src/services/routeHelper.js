@@ -11,6 +11,7 @@ function routeHelper(route) {
       oppositeApiType: 'meals',
       currentRoute: '/drinks',
       oppositeRoute: '/foods',
+      progressRecipeKey: 'cocktails',
     };
   case 'foods':
     return {
@@ -18,6 +19,7 @@ function routeHelper(route) {
       oppositeApiType: 'drinks',
       currentRoute: '/foods',
       oppositeRoute: '/drinks',
+      progressRecipeKey: 'meals',
     };
   default:
     return null;

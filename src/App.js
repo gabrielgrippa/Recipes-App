@@ -12,6 +12,7 @@ import ExploreNationalities from './pages/Explore/ExploreNationalities';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
+import InProgressRecipe from './pages/InProgressRecipe';
 
 const favoriteRecipesPath = '/favorite-recipes';
 const profilePath = '/profile';
@@ -21,12 +22,14 @@ const exploreNationalitiesPath = '/explore/foods/nationalities';
 const exploreRecipesPath = '/explore/:recipes';
 const explorePath = '/explore';
 const recipesIdPath = '/:api/:recipeId';
+const inProgressRecipePath = '/:api/:recipeId/in-progress';
 const recipesPath = '/:recipeType';
 const loginPath = '/';
 
 function App() {
   return (
     <Switch>
+      <Route exact path={ inProgressRecipePath } component={ InProgressRecipe } />
       <Route exact path={ favoriteRecipesPath } component={ Favorites } />
       <Route exact path={ profilePath } component={ Profile } />
       <Route exact path={ doneRecipesPath } component={ DoneRecipes } />
