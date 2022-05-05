@@ -60,7 +60,7 @@ function RecipeActions({ recipe, testIdModifier }) {
 
 RecipeActions.propTypes = {
   recipe: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     type: PropTypes.string,
   }).isRequired,
   testIdModifier: PropTypes.string,
