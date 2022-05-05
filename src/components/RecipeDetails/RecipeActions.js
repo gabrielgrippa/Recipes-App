@@ -8,7 +8,7 @@ import ShareIcon from '../../images/shareIcon.svg';
 import EmptyHeart from '../../images/whiteHeartIcon.svg';
 import FilledHeart from '../../images/blackHeartIcon.svg';
 
-function RecipeActions({ recipe }) {
+function RecipeActions({ recipe, testIdModifier }) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.profileReducer.favoriteRecipes);
 
@@ -40,7 +40,7 @@ function RecipeActions({ recipe }) {
           : (
             <img
               src={ ShareIcon }
-              data-testid="share-btn"
+              data-testid={ `${testIdModifier}share-btn` }
               alt="Share button"
               height="25px"
             />
@@ -49,7 +49,7 @@ function RecipeActions({ recipe }) {
       <Button variant="link" onClick={ toggleFavorite }>
         <img
           src={ isFavorite() ? FilledHeart : EmptyHeart }
-          data-testid="favorite-btn"
+          data-testid={ `${testIdModifier}favorite-btn` }
           alt="Favorite foot"
           height="25px"
         />
@@ -61,7 +61,13 @@ function RecipeActions({ recipe }) {
 RecipeActions.propTypes = {
   recipe: PropTypes.shape({
     id: PropTypes.number,
-  }),
-}.isRequired;
+    type: PropTypes.string,
+  }).isRequired,
+  testIdModifier: PropTypes.string,
+};
+
+RecipeActions.defaultProps = {
+  testIdModifier: '',
+};
 
 export default RecipeActions;

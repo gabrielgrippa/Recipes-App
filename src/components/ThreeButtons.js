@@ -1,22 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Button } from 'react-bootstrap';
-import favoriteRecipes from './favoriteRecipes';
-import HorizontalCards from './HorizontalCards';
 
-function ThreeButtons() {
-  const [arrayToRender, setArrayToRender] = useState(favoriteRecipes);
-
-  const handleClick = ({ target }) => {
-    if (target.value === 'All') {
-      setArrayToRender(favoriteRecipes);
-    } else {
-      const filteredArray = favoriteRecipes.filter((recipe) => (
-        recipe.type === target.value
-      ));
-      setArrayToRender(filteredArray);
-    }
-  };
-
+function ThreeButtons({ handleClick }) {
   return (
     <Container className="d-flex flex-wrap mt-2 mb-2">
       <Button
@@ -43,9 +29,12 @@ function ThreeButtons() {
       >
         Drinks
       </Button>
-      <HorizontalCards recipesArray={ arrayToRender } />
     </Container>
   );
 }
+
+ThreeButtons.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default ThreeButtons;
