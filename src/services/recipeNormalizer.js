@@ -39,7 +39,7 @@ function recipeNormalizer(api, data) {
     }];
   }, []);
 
-  console.log(api, data);
+  // console.log(api, data);
 
   const {
     id,
