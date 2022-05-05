@@ -11,16 +11,16 @@ function RecipeIngredients({ recipe, editMode }) {
   const { progressRecipeKey } = routeHelper(api);
   const dispatch = useDispatch();
 
-  const recipeProgress = useSelector((state) => {
-    const { profileReducer } = state;
-    return profileReducer.inProgressRecipes[progressRecipeKey];
-  })[recipeId] || [];
+  const { inProgressRecipes } = useSelector((s) => s.profileReducer);
+  const recipeProgress = inProgressRecipes[progressRecipeKey][recipeId] || [];
 
   const onCheck = ({ target }) => {
-    if (recipeProgress.includes(target.name)) {
-      recipeProgress.splice(recipeProgress.indexOf(target.name), 1);
+    const ingredientIndex = target.name;
+
+    if (recipeProgress.includes(ingredientIndex)) {
+      recipeProgress.splice(recipeProgress.indexOf(ingredientIndex), 1);
     } else {
-      recipeProgress.push(target.name);
+      recipeProgress.push(ingredientIndex);
     }
 
     dispatch(updateProgress(progressRecipeKey, recipeId, recipeProgress));
