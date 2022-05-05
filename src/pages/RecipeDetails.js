@@ -91,7 +91,7 @@ function RecipeDetails() {
               <Link
                 key={ normalized.id }
                 to={ `${oppositeRoute}/${normalized.id}` }
-                style={ { minWidth: '50%' } }
+                style={ { minWidth: '65%' } }
                 data-testid={ `${index}-recomendation-card` }
               >
                 <Card
