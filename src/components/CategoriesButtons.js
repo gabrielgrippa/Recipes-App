@@ -13,7 +13,7 @@ function CategoryButtons({ selectedItem }) {
   );
   const dispatch = useDispatch();
 
-  // Atenção: Caso a categoria retorne apenas um resultado, NÃO deve ser feito o redirecionamento para a página de detalhes.
+  // Atenção: Caso a categoria retorne apenas um resultado, NÃO deve ser feito o redirecionamento para a página de detalhes
 
   const alreadyFiltered = (filter) => {
     const query = filter === FILTER_ALL || filter === categoryFilter ? '' : filter;
