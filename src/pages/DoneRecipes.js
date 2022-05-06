@@ -9,11 +9,8 @@ function DoneRecipes() {
   const [arrayToRender, setArrayToRender] = useState(doneRecipes);
 
   useEffect(() => {
-    console.log(doneRecipes);
     setArrayToRender(doneRecipes);
   }, [doneRecipes]);
-
-  console.log(doneRecipes);
 
   const handleClick = ({ target }) => {
     if (target.value === 'All') {
