@@ -17,7 +17,7 @@ const loadingRecipes = (state) => ({ type: RECIPES_LOADING, state });
 const exploreIngredients = (state) => ({ type: EXPLORE_INGREDIENTS, state });
 
 const searchAction = (options) => async (dispatch) => {
-  // dispatch(loadingRecipes(true));
+  dispatch(loadingRecipes(true));
   const request = await searchApi({
     ...options,
     api: options.api === PATH_FOODS ? MEAL_TYPE : DRINK_TYPE,

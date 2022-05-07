@@ -13,18 +13,20 @@ import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import InProgressRecipe from './pages/InProgressRecipe';
+import NotFound from './pages/NotFound';
 
 const favoriteRecipesPath = '/favorite-recipes';
 const profilePath = '/profile';
 const doneRecipesPath = '/done-recipes';
 const exploreIngredientsPath = '/explore/:recipeType/ingredients';
-const exploreNationalitiesPath = '/explore/foods/nationalities';
+const exploreNationalitiesPath = '/explore/:recipeType/nationalities';
 const exploreRecipesPath = '/explore/:recipes';
 const explorePath = '/explore';
 const recipesIdPath = '/:api/:recipeId';
 const inProgressRecipePath = '/:api/:recipeId/in-progress';
 const recipesPath = '/:recipeType';
 const loginPath = '/';
+const NotFoundPath = '*';
 
 function App() {
   return (
@@ -40,6 +42,7 @@ function App() {
       <Route exact path={ recipesIdPath } component={ RecipeDetails } />
       <Route exact path={ recipesPath } component={ MainScreen } />
       <Route exact path={ loginPath } component={ Login } />
+      <Route exact path={ NotFoundPath } component={ NotFound } />
     </Switch>
   );
 }
