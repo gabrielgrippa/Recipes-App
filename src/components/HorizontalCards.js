@@ -5,6 +5,17 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import RecipeActions from './RecipeDetails/RecipeActions';
 
 function HorizontalCards({ recipesArray }) {
+  const renderTags = (tags, index) => (
+    tags.map((tag) => (
+      <span
+        key={ tag }
+        className="text-muted"
+        data-testid={ `${index}-${tag}-horizontal-tag` }
+      >
+        {`|${tag}|`}
+      </span>
+    ))
+  );
   return (
     <Container
       className="d-flex flex-wrap justify-content-center"
@@ -38,17 +49,30 @@ function HorizontalCards({ recipesArray }) {
                 className="bg-warning text-dark"
                 style={ { width: '50%', padding: '5px' } }
               >
-                <Card.Text
+                <Card.Subtitle
                   data-testid={ `${index}-horizontal-top-text` }
                 >
                   { recipe.type === 'food' ? `${recipe.nationality} - ${recipe
                     .category}` : `${recipe.alcoholicOrNot}`}
-                </Card.Text>
+                </Card.Subtitle>
+                { recipe.type === 'food' && recipe.tags
+                    && (
+                      renderTags(recipe.tags, index)
+                    ) }
                 <Card.Title
                   data-testid={ `${index}-horizontal-name` }
                 >
                   {recipe.name}
                 </Card.Title>
+                { recipe.doneDate
+                && (
+                  <Card.Subtitle
+                    className="text-muted"
+                    data-testid={ `${index}-horizontal-done-date` }
+                  >
+                    {recipe.doneDate}
+                  </Card.Subtitle>
+                )}
               </Card.Body>
             </Card>
           </Link>
@@ -71,7 +95,7 @@ function HorizontalCards({ recipesArray }) {
 }
 
 HorizontalCards.propTypes = {
-  recipesArray: PropTypes.arrayOf.isRequired,
-};
+  recipesArray: PropTypes.arrayOf(PropTypes.object),
+}.isRequired;
 
 export default HorizontalCards;
